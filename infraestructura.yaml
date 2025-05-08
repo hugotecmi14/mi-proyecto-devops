@@ -1,0 +1,20 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Plantilla básica para lanzar una instancia EC2 y un bucket S3 usando LabRole
+
+Resources:
+
+  MiInstanciaEC2:
+    Type: AWS::EC2::Instance
+    Properties:
+      InstanceType: t2.micro
+      ImageId: ami-053b0d53c279acc90  # Ubuntu 22.04 en us-east-1
+      IamInstanceProfile: LabInstanceProfile
+      Tags:
+        - Key: Name
+          Value: EC2DesdeCloudFormation
+
+  MiBucketS3:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub "mi-bucket-devops-${AWS::AccountId}"
+      AccessControl: Private
