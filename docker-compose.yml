@@ -1,0 +1,16 @@
+version: '3'
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    volumes:
+      - ./src:/usr/share/nginx/html
+    networks:
+      - red_web
+
+networks:
+  red_web:
+    driver: bridge
